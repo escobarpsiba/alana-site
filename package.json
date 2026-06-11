@@ -1,0 +1,23 @@
+{
+  "name": "holding-environment",
+  "version": "1.0.0",
+  "description": "The Holding Environment - Site de Psicanálise",
+  "scripts": {
+    "dev:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --watch",
+    "dev:server": "live-server ./public",
+    "dev": "npm-run-all --parallel dev:css dev:server",
+    "build": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "autoprefixer": "^10.4.17",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.108.1"
+  }
+}

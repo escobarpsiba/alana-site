@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alana Piranji | Psicanalista | Psicanálise</title>
+<link href="assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Corinthia:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+  .quote-block { position: relative; padding: 2rem 0; }
+  .quote-block::before, .quote-block::after {
+    content: ''; display: block; width: 40px; height: 1px;
+    background-color: #7baac7; margin: 1.5rem auto;
+  }
+  .fade-in { animation: fadeIn 1.2s ease-out forwards; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .hero-heading {
+    letter-spacing: -0.01em;
+  }
+  .hero-heading .highlight {
+    display: inline-block;
+    position: relative;
+  }
+  .hero-heading .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(201, 168, 76, 0.15);
+    z-index: -1;
+  }
+  .cta-section {
+    position: relative;
+  }
+  .cta-section::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.4em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6rem;
+    line-height: 1;
+    color: rgba(123, 170, 199, 0.1);
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-navy shadow-lg">
+  <nav class="flex justify-between items-center max-w-7xl mx-auto px-gutter py-md">
+    <a href="index.html" class="flex flex-col items-center leading-none py-xs">
+      <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Piranji</span>
+      <span class="text-white/80 text-caption font-label-md" style="margin-top: 2px;">Psicanalista</span>
+    </a>
+    <div class="hidden md:flex items-center gap-lg">
+      <a class="text-white/80 border-b-2 border-gold pb-1 font-label-md hover:text-gold transition-all duration-300" href="index.html">Início</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="about.html">Sobre</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="index.html#ajuda">Atendimentos</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="blog.html">Blog</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="https://wa.me/5561998183687">Contato</a>
+    </div>
+    <a href="https://wa.me/5561998183687" class="bg-gold text-navy px-gutter py-sm rounded-full font-label-md transition-all duration-300 hover:bg-gold-light shadow-sm">Agende uma Sessão</a>
+    <button class="md:hidden text-white" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="hidden md:hidden bg-navy border-t border-surface-variant px-gutter py-md">
+    <div class="flex flex-col gap-sm">
+      <a href="index.html" class="text-white/80 font-label-md py-sm">Início</a>
+      <a href="about.html" class="text-white/80 font-label-md py-sm">Sobre</a>
+      <a href="index.html#ajuda" class="text-white/80 font-label-md py-sm">Atendimentos</a>
+      <a href="blog.html" class="text-white/80 font-label-md py-sm">Blog</a>
+      <a href="https://wa.me/5561998183687" class="text-white/80 font-label-md py-sm">Contato</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center pt-xl" id="home">
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 gap-xl items-center relative z-10">
+      <div class="fade-in">
+        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md hero-heading tracking-wide md:tracking-wider">
+          O Espaço para sua <span class="italic">Reflexão</span> e Transformação
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-lg">
+          A psicanálise não promete respostas prontas, mas oferece um lugar onde o sujeito pode advir como causa de si mesmo — interrogando o desejo que o constitui e que o divide, para além das identificações que o aprisionam.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-md">
+          <a href="https://wa.me/5561998183687" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md transition-transform hover:scale-105 text-center">
+            Iniciar Jornada
+          </a>
+          <a href="about.html" class="border border-tertiary text-tertiary px-lg py-sm rounded-full font-label-md transition-transform hover:scale-105 bg-transparent text-center">
+            Saiba Mais
+          </a>
+        </div>
+      </div>
+      <div class="relative hidden md:block">
+        <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(71,91,88,0.12)]">
+          <img class="w-full h-full object-cover" alt="Consultório de psicanálise" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"/>
+        </div>
+        <div class="absolute -bottom-base -left-base glass-card p-md rounded-xl max-w-xs shadow-lg">
+          <span class="font-label-md text-primary block mb-xs">Acolhimento</span>
+          <p class="text-caption text-on-surface-variant">"A cura acontece no encontro entre duas mentes em um espaço de segurança absoluta."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Block -->
+  <section class="max-w-720 mx-auto px-gutter py-xl text-center">
+    <div class="quote-block">
+      <p class="font-display-lg italic text-headline-md text-primary leading-relaxed">
+        "Onde o Id estava, o Ego deverá estar."
+      </p>
+      <cite class="font-label-md text-secondary block mt-sm">— Sigmund Freud</cite>
+    </div>
+  </section>
+
+  <!-- Abordagem Terapêutica -->
+  <section class="bg-surface-container-low py-xl" id="abordagem">
+    <div class="max-w-7xl mx-auto px-gutter">
+      <div class="text-center mb-xl">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Abordagem Lacaniana</h2>
+        <p class="text-body-md text-on-surface-variant max-w-xl mx-auto">
+          A psicanálise de orientação lacaniana parte da premissa de que o inconsciente é estruturado como uma linguagem. O trabalho analítico opera sobre os significantes que marcam a história do sujeito, visando não uma adaptação, mas a emergência do desejo em sua potência singular.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <div class="flex flex-col gap-sm reveal">
+          <span class="material-symbols-outlined text-primary text-[40px] mb-xs">psychology</span>
+          <h3 class="font-headline-sm text-headline-sm">Inconsciente</h3>
+          <p class="text-body-md text-on-surface-variant">O inconsciente não é um reservatório de instintos, mas um saber que não se sabe — uma cadeia de significantes que se repete e insiste, produzindo sintomas, sonhos, atos falhos e chistes. A escuta analítica visa decifrar essa escrita singular.</p>
+        </div>
+        <div class="flex flex-col gap-sm reveal">
+          <span class="material-symbols-outlined text-primary text-[40px] mb-xs">diversity_3</span>
+          <h3 class="font-headline-sm text-headline-sm">Desejo e Falta</h3>
+          <p class="text-body-md text-on-surface-variant">O desejo é o desejo do Outro — constituído na linguagem e marcado pela falta estrutural. A psicanálise não promete completude, mas convida o sujeito a se responsabilizar por seu desejo e a sustentar sua posição desejante para além das fantasias que o aprisionam.</p>
+        </div>
+        <div class="flex flex-col gap-sm reveal">
+          <span class="material-symbols-outlined text-primary text-[40px] mb-xs">self_care</span>
+          <h3 class="font-headline-sm text-headline-sm">Sintoma e Sinthoma</h3>
+          <p class="text-body-md text-on-surface-variant">O sintoma não é um erro a ser eliminado, mas uma formação do inconsciente que porta uma verdade. Na clínica lacaniana, o sintoma pode ser decifrado e, em um segundo momento, identificificado — tornando-se uma invenção singular que amarra os registros Real, Simbólico e Imaginário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Posso Ajudar (Bento Grid Style) -->
+  <section class="py-xl" id="ajuda">
+    <div class="max-w-7xl mx-auto px-gutter">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-md md:grid-rows-2 h-auto md:h-[600px]">
+        <div class="md:col-span-2 md:row-span-2 bg-surface-container rounded-xl p-lg flex flex-col justify-end shadow-[0_20px_40px_rgba(78,98,95,0.03)] relative overflow-hidden group card-lift">
+          <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+            <img class="w-full h-full object-cover" alt="Alana Piranji - Psicanalista" src="assets/images/alana-foto.jpeg"/>
+          </div>
+          <div class="relative z-10">
+            <h2 class="font-headline-md text-headline-md mb-md">Como Posso Ajudar</h2>
+            <p class="text-body-lg text-on-surface-variant mb-lg">A clínica lacaniana acolhe o sofrimento psíquico — ansiedade, depressão, luto, crises de identidade, conflitos relacionais — como manifestações de um sujeito que busca se dizer. Através da palavra, o analisando pode advir como sujeito de seu desejo, interrogando as fantasias que sustentam seu mal-estar.</p>
+          </div>
+        </div>
+        <div class="md:col-span-2 bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-center shadow-md card-lift">
+          <h4 class="font-headline-sm mb-xs">Clínica do Sujeito</h4>
+          <p class="text-body-md opacity-90">Atendimento voltado para adultos que desejam interrogar sua posição subjetiva. Não se trata de curar um sintoma, mas de descobrir o que ele quer dizer — e o que o sujeito pode vir a ser para além dele.</p>
+        </div>
+        <div class="md:col-span-1 bg-tertiary-fixed rounded-xl p-lg flex flex-col justify-center card-lift">
+          <span class="material-symbols-outlined text-primary mb-sm text-3xl">language</span>
+          <h4 class="font-label-md text-on-tertiary-fixed">Online</h4>
+          <p class="text-caption text-on-tertiary-fixed-variant">Atendimento online para residentes em Brasília — DF e todo o Brasil.</p>
+        </div>
+        <div class="md:col-span-1 bg-surface-container-high rounded-xl p-lg flex flex-col justify-center card-lift">
+          <span class="material-symbols-outlined text-primary mb-sm text-3xl">event_available</span>
+          <h4 class="font-label-md text-on-surface">Agendamento</h4>
+          <p class="text-caption text-on-surface-variant">Horários flexíveis para acomodar sua rotina e necessidades específicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview -->
+  <section class="bg-surface-container-lowest py-xl" id="blog">
+    <div class="max-w-7xl mx-auto px-gutter">
+      <div class="flex justify-between items-end mb-xl">
+        <div>
+          <h2 class="font-headline-md text-headline-md">Últimas Reflexões</h2>
+          <p class="text-body-md text-on-surface-variant">Ensaios sobre psicanálise lacaniana, cultura e o mal-estar no discurso capitalista.</p>
+        </div>
+        <a class="text-primary font-label-md flex items-center gap-xs hover:underline" href="blog.html">Ver tudo <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+      </div>
+      <div id="latestPosts" class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <!-- Posts gerados via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-xl bg-surface-container-low relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-gutter text-center relative z-10">
+      <div class="cta-section bg-surface p-xl md:p-xl rounded-2xl shadow-[0_20px_60px_rgba(123,170,199,0.08)] border border-primary-fixed-dim/20">
+        <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-primary mb-md hero-heading">
+          O que te move a buscar análise?
+        </h2>
+        <div class="w-12 h-px bg-primary/30 mx-auto mb-lg"></div>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg leading-relaxed max-w-2xl mx-auto">
+          "A psicanálise começa com um ato: o de falar. Se algo em seu discurso atual não se sustenta mais, talvez seja o momento de endereçar essa fala a um outro que possa escutá-la em sua singularidade."
+        </p>
+        <a href="https://wa.me/5561998183687" class="bg-primary text-on-primary px-xl py-sm rounded-full font-label-md shadow-lg transition-transform hover:scale-105 inline-block">
+          Solicitar Primeira Conversa
+        </a>
+      </div>
+    </div>
+    <div class="absolute -bottom-xl -right-xl w-[400px] h-[400px] bg-primary-fixed-dim/20 rounded-full blur-3xl -z-10"></div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-xl bg-navy">
+  <div class="flex flex-col items-center gap-md max-w-7xl mx-auto px-gutter">
+    <a href="index.html" class="flex flex-col items-center leading-none">
+      <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Piranji</span>
+      <span class="text-white/60 text-caption font-label-md" style="margin-top: 2px;">Psicanalista</span>
+    </a>
+    <div class="flex flex-wrap justify-center gap-lg">
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="index.html">Início</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="about.html">Sobre</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="index.html#ajuda">Atendimentos</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="blog.html">Blog</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="https://wa.me/5561998183687">Contato</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="admin/index.html">Admin</a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-lg">
+      <a class="text-white/40 hover:text-gold transition-colors duration-300 font-label-md" href="#">Política de Privacidade</a>
+      <a class="text-white/40 hover:text-gold transition-colors duration-300 font-label-md" href="#">FAQ</a>
+    </div>
+    <div class="w-full h-px bg-white/10 my-md"></div>
+    <p class="font-caption text-caption text-white/50 text-center">&copy; 2024 Alana Piranji &mdash; Psicanalista. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script>
+  // Posts para preview
+  document.addEventListener('DOMContentLoaded', async () => {
+    const latestPosts = (await DB.getPosts()).slice(0, 3);
+    // Render latest posts
+    const container = document.getElementById('latestPosts');
+    container.innerHTML = latestPosts.map((post, i) => `
+      <a href="post.html?slug=${post.slug}" class="group fade-in block" style="animation-delay: ${i * 150}ms">
+        <div class="aspect-video mb-md overflow-hidden rounded-lg shadow-sm">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${post.image || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80'}" alt="${post.title}"/>
+        </div>
+        <span class="text-caption text-primary font-medium tracking-wider">${post.tag}</span>
+        <h3 class="font-headline-sm mt-xs mb-sm group-hover:text-primary transition-colors">${post.title}</h3>
+        <p class="text-body-md text-on-surface-variant line-clamp-2">${post.excerpt}</p>
+      </a>
+    `).join('');
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .stagger-fade').forEach(el => observer.observe(el));
+  });
+</script>
+<a href="https://wa.me/5561998183687" target="_blank" class="fixed bottom-gutter right-gutter z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</body>
+</html>

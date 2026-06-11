@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Comentários | Admin</title>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=Corinthia:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="admin-shell"></div>
+<div id="notification"></div>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>
+async function renderComments() {
+  const all = await DB.getComments();
+  const comments = all.sort((a, b) => new Date(b.date) - new Date(a.date));
+  document.getElementById('admin-content').innerHTML = `
+    <h1 class="font-headline-md text-headline-md text-on-surface mb-lg">Comentários</h1>
+    ${comments.length === 0 ? '<div class="bg-surface p-xl rounded-xl text-center"><p class="text-on-surface-variant">Nenhum comentário recebido.</p></div>' : `
+    <div class="bg-surface rounded-xl shadow-sm overflow-x-auto">
+      <table class="w-full">
+        <thead><tr class="border-b border-outline-variant/30">
+          <th class="text-left font-label-md text-secondary uppercase tracking-widest text-caption p-md">Status</th>
+          <th class="text-left font-label-md text-secondary uppercase tracking-widest text-caption p-md">Autor</th>
+          <th class="text-left font-label-md text-secondary uppercase tracking-widest text-caption p-md hidden md:table-cell">Post</th>
+          <th class="text-left font-label-md text-secondary uppercase tracking-widest text-caption p-md hidden lg:table-cell">Comentário</th>
+          <th class="text-left font-label-md text-secondary uppercase tracking-widest text-caption p-md hidden md:table-cell">Data</th>
+          <th class="text-right font-label-md text-secondary uppercase tracking-widest text-caption p-md">Ações</th>
+        </tr></thead>
+        <tbody>${comments.map(c => `
+          <tr class="border-b border-outline-variant/20 hover:bg-surface-container/50 transition-colors ${!c.approved ? 'bg-amber-50/50' : ''}">
+            <td class="p-md">
+              <span class="flex items-center gap-xs font-label-md text-caption ${c.approved ? 'text-green-600' : 'text-amber-600'}">
+                <span class="w-2 h-2 rounded-full ${c.approved ? 'bg-green-600' : 'bg-amber-600'}"></span>
+                ${c.approved ? 'APROVADO' : 'PENDENTE'}
+              </span>
+            </td>
+            <td class="p-md"><span class="font-body-md text-on-surface">${c.author}</span></td>
+            <td class="p-md hidden md:table-cell"><span class="font-caption text-secondary">${c.postTitle}</span></td>
+            <td class="p-md hidden lg:table-cell"><span class="font-caption text-on-surface-variant line-clamp-2">${c.content}</span></td>
+            <td class="p-md hidden md:table-cell"><span class="font-caption text-secondary">${c.date}</span></td>
+            <td class="p-md text-right">
+              <button onclick="toggleApprove('${c.id}')" class="text-primary hover:bg-primary-fixed/30 p-xs rounded-lg transition-all" title="${c.approved ? 'Desaprovar' : 'Aprovar'}">
+                <span class="material-symbols-outlined">${c.approved ? 'visibility_off' : 'visibility'}</span>
+              </button>
+              <button onclick="deleteComment('${c.id}')" class="text-error hover:bg-error-container/30 p-xs rounded-lg transition-all" title="Excluir">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </td>
+          </tr>
+        `).join('')}</tbody>
+      </table>
+    </div>`}
+  `;
+}
+
+async function toggleApprove(id) {
+  await DB.toggleApproveComment(id);
+  showNotification('Status alterado.', 'success');
+  await renderComments();
+}
+
+async function deleteComment(id) {
+  if (confirm('Excluir comentário?')) {
+    await DB.deleteComment(id);
+    showNotification('Comentário excluído.', 'success');
+    await renderComments();
+  }
+}
+
+(async () => {
+  await renderAdminShell('Comentários', 'Comentários');
+  await renderComments();
+})();
+</script>
+</body>
+</html>

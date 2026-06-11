@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mídias | Admin</title>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=Corinthia:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="admin-shell"></div>
+<div id="notification"></div>
+<input id="fileInput" type="file" accept="image/*" class="hidden" multiple/>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>
+async function renderMedia() {
+  const media = await DB.getMedia();
+  document.getElementById('admin-content').innerHTML = `
+    <div class="flex items-center justify-between mb-lg">
+      <h1 class="font-headline-md text-headline-md text-on-surface">Mídias</h1>
+      <button onclick="document.getElementById('fileInput').click()" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md flex items-center gap-xs hover:scale-[1.02] transition-transform">
+        <span class="material-symbols-outlined text-[18px]">upload</span> Upload
+      </button>
+    </div>
+    ${media.length === 0 ? '<div class="bg-surface p-xl rounded-xl text-center"><p class="text-on-surface-variant">Nenhuma mídia enviada.</p></div>' : `
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-md">
+      ${media.map(m => `
+        <div class="bg-surface rounded-xl overflow-hidden shadow-sm group relative">
+          <div class="aspect-square overflow-hidden">
+            <img src="${m.data_url}" alt="${m.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          </div>
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm">
+            <button onclick="copyUrl('${m.data_url}')" class="text-white p-xs hover:scale-110 transition-transform" title="Copiar URL">
+              <span class="material-symbols-outlined">link</span>
+            </button>
+            <button onclick="deleteMedia('${m.id}')" class="text-red-400 p-xs hover:scale-110 transition-transform" title="Excluir">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+          <div class="p-xs">
+            <p class="font-caption text-caption text-on-surface-variant truncate">${m.name}</p>
+            <p class="font-caption text-caption text-secondary">${(m.size / 1024).toFixed(1)} KB</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>`}
+  `;
+}
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url).then(() => {
+    showNotification('URL copiada!', 'success');
+  });
+}
+
+async function deleteMedia(id) {
+  if (confirm('Excluir esta mídia?')) {
+    await DB.deleteMedia(id);
+    showNotification('Mídia excluída.', 'success');
+    await renderMedia();
+  }
+}
+
+(async () => {
+  await renderAdminShell('Mídias', 'Mídias');
+  await renderMedia();
+
+  document.getElementById('fileInput').onchange = async function(e) {
+    const files = [...e.target.files];
+    let ok = 0, fail = 0;
+    for (const file of files) {
+      try {
+        await DB.uploadMedia(file);
+        ok++;
+      } catch (err) {
+        fail++;
+        console.error(err);
+        showNotification(err.message, 'error');
+      }
+    }
+    if (ok > 0) {
+      showNotification(ok + ' arquivo(s) enviado(s) com sucesso!', 'success');
+      await renderMedia();
+    }
+    this.value = '';
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Categorias | Admin</title>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=Corinthia:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="admin-shell"></div>
+<div id="notification"></div>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>
+async function renderCategories() {
+  const cats = await DB.getCategories();
+  document.getElementById('admin-content').innerHTML = `
+    <h1 class="font-headline-md text-headline-md text-on-surface mb-lg">Categorias</h1>
+    <div class="bg-surface p-lg rounded-xl shadow-sm mb-lg">
+      <form id="catForm" class="flex gap-md items-end">
+        <div class="flex-1">
+          <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Nova Categoria</label>
+          <input id="newCatName" required class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md" placeholder="Nome da categoria"/>
+        </div>
+        <button type="submit" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Adicionar</button>
+      </form>
+    </div>
+    <div class="bg-surface rounded-xl shadow-sm">
+      ${cats.length === 0 ? '<p class="p-lg text-on-surface-variant">Nenhuma categoria.</p>' : cats.map(c => `
+        <div class="flex items-center justify-between px-lg py-sm border-b border-outline-variant/20 hover:bg-surface-container/50 transition-colors group">
+          <span class="font-body-md text-on-surface cat-display">${c}</span>
+          <input class="cat-edit font-body-md text-on-surface border-b border-primary bg-transparent outline-none hidden w-48" value="${c}" data-old="${c}"/>
+          <div class="flex gap-sm">
+            <button onclick="toggleEdit(this)" class="text-primary hover:bg-primary-fixed/30 p-xs rounded-lg transition-all" title="Renomear"><span class="material-symbols-outlined">edit</span></button>
+            <button onclick="deleteCat('${c}')" class="text-error hover:bg-error-container/30 p-xs rounded-lg transition-all" title="Excluir"><span class="material-symbols-outlined">delete</span></button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  document.getElementById('catForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('newCatName').value.trim();
+    if (!name) return;
+    await DB.createCategory(name);
+    document.getElementById('newCatName').value = '';
+    showNotification('Categoria adicionada!', 'success');
+    await renderCategories();
+  };
+}
+
+async function toggleEdit(btn) {
+  const row = btn.closest('div[class*="flex items-center justify-between"]') || btn.parentElement.parentElement;
+  const display = row.querySelector('.cat-display');
+  const input = row.querySelector('.cat-edit');
+  if (input.classList.contains('hidden')) {
+    display.classList.add('hidden');
+    input.classList.remove('hidden');
+    input.focus();
+    btn.innerHTML = '<span class="material-symbols-outlined">check</span>';
+  } else {
+    const oldName = input.dataset.old;
+    const newName = input.value.trim();
+    if (newName && newName !== oldName) {
+      await DB.renameCategory(oldName, newName);
+      showNotification('Categoria renomeada!', 'success');
+      await renderCategories();
+    } else {
+      display.classList.remove('hidden');
+      input.classList.add('hidden');
+      btn.innerHTML = '<span class="material-symbols-outlined">edit</span>';
+    }
+  }
+}
+
+async function deleteCat(name) {
+  if (confirm('Excluir categoria "' + name + '"?')) {
+    await DB.deleteCategory(name);
+    showNotification('Categoria excluída.', 'success');
+    await renderCategories();
+  }
+}
+
+(async () => {
+  await renderAdminShell('Categorias', 'Categorias');
+  await renderCategories();
+})();
+</script>
+</body>
+</html>

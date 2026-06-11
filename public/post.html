@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Post | Alana Piranji | Psicanalista</title>
+<link href="assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Corinthia:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+  .post-content p { margin-bottom: 1.5rem; line-height: 1.75; }
+  .post-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #1a1c1a; }
+  .post-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+  .post-content blockquote { border-left: 3px solid #7baac7; padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; color: #5f5e5b; }
+  .post-content img { max-width: 100%; border-radius: 0.5rem; margin: 1.5rem 0; }
+  .post-content a { color: #7baac7; text-decoration: underline; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<header class="fixed top-0 w-full z-50 bg-navy shadow-lg">
+  <nav class="flex justify-between items-center max-w-7xl mx-auto px-gutter py-md">
+    <a href="index.html" class="flex flex-col items-center leading-none py-xs">
+      <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Piranji</span>
+      <span class="text-white/80 text-caption font-label-md" style="margin-top: 2px;">Psicanalista</span>
+    </a>
+    <div class="hidden md:flex items-center gap-lg">
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="index.html">Início</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="about.html">Sobre</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="index.html#ajuda">Atendimentos</a>
+      <a class="text-gold border-b-2 border-gold pb-1 font-label-md hover:text-gold transition-all duration-300" href="blog.html">Blog</a>
+      <a class="text-white/80 font-label-md hover:text-gold transition-all duration-300" href="https://wa.me/5561998183687">Contato</a>
+    </div>
+    <a href="https://wa.me/5561998183687" class="bg-gold text-navy px-gutter py-sm rounded-full font-label-md transition-all duration-300 hover:bg-gold-light shadow-sm">Agende uma Sessão</a>
+    <button class="md:hidden text-white" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="hidden md:hidden bg-navy border-t border-surface-variant px-gutter py-md">
+    <div class="flex flex-col gap-sm">
+      <a href="index.html" class="text-white/80 font-label-md py-sm">Início</a>
+      <a href="about.html" class="text-white/80 font-label-md py-sm">Sobre</a>
+      <a href="index.html#ajuda" class="text-white/80 font-label-md py-sm">Atendimentos</a>
+      <a href="blog.html" class="text-white/80 font-label-md py-sm">Blog</a>
+      <a href="https://wa.me/5561998183687" class="text-white/80 font-label-md py-sm">Contato</a>
+    </div>
+  </div>
+</header>
+
+<main class="pt-xl">
+  <div id="postContainer" class="max-w-3xl mx-auto px-gutter py-xl">
+    <p id="loadingMsg" class="text-center text-secondary">Carregando...</p>
+  </div>
+
+  <section id="commentsSection" class="max-w-3xl mx-auto px-gutter pb-xl">
+    <div class="border-t border-outline-variant/30 pt-xl mt-xl">
+      <h2 class="font-headline-sm text-headline-sm text-primary mb-lg">Comentários</h2>
+      <div id="commentsList" class="space-y-md mb-xl"></div>
+      <form id="commentForm" class="space-y-md bg-surface-container p-lg rounded-xl">
+        <h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest">Deixe seu comentário</h3>
+        <div>
+          <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Nome</label>
+          <input id="commentName" required class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md" placeholder="Seu nome"/>
+        </div>
+        <div>
+          <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Comentário</label>
+          <textarea id="commentContent" required rows="4" class="w-full border border-outline bg-transparent focus:border-primary outline-none p-sm text-body-md resize-none" placeholder="Compartilhe sua reflexão..."></textarea>
+        </div>
+        <p id="commentSuccess" class="hidden text-caption text-green-600">Comentário enviado para aprovação.</p>
+        <button type="submit" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Enviar</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="w-full py-xl bg-navy">
+  <div class="flex flex-col items-center gap-md max-w-7xl mx-auto px-gutter">
+    <a href="index.html" class="flex flex-col items-center leading-none">
+      <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Piranji</span>
+      <span class="text-white/60 text-caption font-label-md" style="margin-top: 2px;">Psicanalista</span>
+    </a>
+    <div class="flex flex-wrap justify-center gap-lg">
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="index.html">Início</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="about.html">Sobre</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="index.html#ajuda">Atendimentos</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="blog.html">Blog</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="https://wa.me/5561998183687">Contato</a>
+      <a class="text-white/60 hover:text-gold transition-colors duration-300 font-label-md" href="admin/index.html">Admin</a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-lg">
+      <a class="text-white/40 hover:text-gold transition-colors duration-300 font-label-md" href="#">Política de Privacidade</a>
+      <a class="text-white/40 hover:text-gold transition-colors duration-300 font-label-md" href="#">FAQ</a>
+    </div>
+    <div class="w-full h-px bg-white/10 my-md"></div>
+    <p class="font-caption text-caption text-white/50 text-center">&copy; 2024 Alana Piranji &mdash; Psicanalista. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script>
+(async () => {
+const slug = new URLSearchParams(window.location.search).get('slug');
+const post = await DB.getPost(slug);
+
+if (!post) {
+  document.getElementById('postContainer').innerHTML = '<h1 class="font-headline-md text-headline-md text-primary">Post não encontrado</h1><p class="text-secondary mt-md">O artigo que você procura não existe.</p><a href="blog.html" class="text-primary font-label-md mt-md inline-block">Voltar ao Blog</a>';
+  document.getElementById('commentsSection').classList.add('hidden');
+} else {
+  document.title = post.title + ' | Alana Piranji | Psicanalista';
+  document.getElementById('postContainer').innerHTML = `
+    <div class="mb-lg">
+      <span class="text-primary font-label-md uppercase tracking-widest">${post.tag}</span>
+      <h1 class="font-display-lg text-display-lg mt-sm mb-md">${post.title}</h1>
+      <p class="text-secondary font-label-md flex items-center gap-sm">
+        <span class="material-symbols-outlined text-[16px]">calendar_today</span> ${post.date}
+      </p>
+    </div>
+    ${post.excerpt ? `<p class="font-body-lg text-on-surface-variant italic mb-lg border-l-4 border-primary pl-md py-sm">${post.excerpt}</p>` : ''}
+    <div class="post-content font-body-md text-body-md text-on-surface leading-relaxed">${post.content}</div>
+  `;
+
+  const approved = await DB.getApprovedComments(slug);
+  const commentsList = document.getElementById('commentsList');
+  if (approved.length === 0) {
+    commentsList.innerHTML = '<p class="text-secondary">Nenhum comentário ainda. Seja o primeiro a comentar.</p>';
+  } else {
+    commentsList.innerHTML = approved.map(c => `
+      <div class="p-md bg-surface rounded-lg border-l-4 border-primary-fixed-dim">
+        <div class="flex items-center gap-sm mb-xs">
+          <span class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary text-[16px]">person</span>
+          </span>
+          <span class="font-label-md text-primary">${c.author}</span>
+          <span class="text-caption text-secondary">${c.date}</span>
+        </div>
+        <p class="text-body-md text-on-surface-variant">${c.content}</p>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('commentForm').onsubmit = function(e) {
+    e.preventDefault();
+    DB.addComment({
+      postSlug: post.slug,
+      postTitle: post.title,
+      author: document.getElementById('commentName').value,
+      content: document.getElementById('commentContent').value
+    });
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentContent').value = '';
+    document.getElementById('commentSuccess').classList.remove('hidden');
+    setTimeout(() => document.getElementById('commentSuccess').classList.add('hidden'), 4000);
+  };
+}
+})();
+</script>
+<a href="https://wa.me/5561998183687" target="_blank" class="fixed bottom-gutter right-gutter z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</body>
+</html>

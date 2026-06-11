@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Configurações | Admin</title>
+<link href="../assets/css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=Corinthia:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div id="admin-shell"></div>
+<div id="notification"></div>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/admin.js"></script>
+<script>
+async function renderSettings() {
+  const s = await DB.getSettings();
+  document.getElementById('admin-content').innerHTML = `
+    <h1 class="font-headline-md text-headline-md text-on-surface mb-lg">Configurações</h1>
+    <div class="space-y-lg">
+      <!-- SEO -->
+      <div class="bg-surface p-lg rounded-xl shadow-sm">
+        <h2 class="font-label-md text-label-md text-primary mb-md uppercase tracking-widest">SEO</h2>
+        <form id="seoForm" class="space-y-md">
+          <div>
+            <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Título do Site</label>
+            <input id="cfgTitle" value="${s.siteTitle || ''}" class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md"/>
+          </div>
+          <div>
+            <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Descrição</label>
+            <textarea id="cfgDescription" rows="2" class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md resize-none">${s.siteDescription || ''}</textarea>
+          </div>
+          <div>
+            <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Palavras-chave</label>
+            <input id="cfgKeywords" value="${s.keywords || ''}" class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md"/>
+          </div>
+          <button type="submit" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Salvar SEO</button>
+        </form>
+      </div>
+      <!-- Contato -->
+      <div class="bg-surface p-lg rounded-xl shadow-sm">
+        <h2 class="font-label-md text-label-md text-primary mb-md uppercase tracking-widest">Contato</h2>
+        <form id="contactForm" class="space-y-md">
+          <div>
+            <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">E-mail</label>
+            <input id="cfgEmail" value="${s.email || ''}" class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md"/>
+          </div>
+          <div>
+            <label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Cidade</label>
+            <input id="cfgCity" value="${s.city || ''}" class="w-full border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md"/>
+          </div>
+          <button type="submit" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Salvar Contato</button>
+        </form>
+      </div>
+      <!-- Redes Sociais -->
+      <div class="bg-surface p-lg rounded-xl shadow-sm">
+        <h2 class="font-label-md text-label-md text-primary mb-md uppercase tracking-widest">Redes Sociais</h2>
+        <ul id="socialList" class="space-y-sm mb-md">
+          ${s.socialLinks.map(l => `
+            <li class="flex items-center justify-between py-sm border-b border-outline-variant/20">
+              <span class="font-body-md"><strong>${l.platform}:</strong> ${l.url}</span>
+              <button onclick="removeSocial('${l.id}')" class="text-error hover:bg-error-container/30 p-xs rounded-lg transition-all"><span class="material-symbols-outlined">close</span></button>
+            </li>
+          `).join('')}
+        </ul>
+        ${s.socialLinks.length === 0 ? '<p class="text-caption text-secondary mb-md">Nenhum link cadastrado.</p>' : ''}
+        <form id="socialForm" class="flex gap-md items-end">
+          <div><label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">Plataforma</label>
+            <input id="socialPlatform" class="border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md" placeholder="Instagram"/></div>
+          <div><label class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-xs">URL</label>
+            <input id="socialUrl" class="border-b border-outline bg-transparent focus:border-primary outline-none py-sm text-body-md" placeholder="https://..."/></div>
+          <button type="submit" class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Adicionar</button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('seoForm').onsubmit = async function(e) {
+    e.preventDefault();
+    await DB.updateSettings({
+      siteTitle: document.getElementById('cfgTitle').value,
+      siteDescription: document.getElementById('cfgDescription').value,
+      keywords: document.getElementById('cfgKeywords').value
+    });
+    showNotification('SEO atualizado!', 'success');
+  };
+
+  document.getElementById('contactForm').onsubmit = async function(e) {
+    e.preventDefault();
+    await DB.updateSettings({
+      email: document.getElementById('cfgEmail').value,
+      city: document.getElementById('cfgCity').value
+    });
+    showNotification('Contato atualizado!', 'success');
+  };
+
+  document.getElementById('socialForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const p = document.getElementById('socialPlatform').value.trim();
+    const u = document.getElementById('socialUrl').value.trim();
+    if (p && u) {
+      await DB.addSocialLink(p, u);
+      document.getElementById('socialPlatform').value = '';
+      document.getElementById('socialUrl').value = '';
+      showNotification('Link adicionado!', 'success');
+      await renderSettings();
+    }
+  };
+}
+
+async function removeSocial(id) {
+  await DB.removeSocialLink(id);
+  showNotification('Link removido.', 'success');
+  await renderSettings();
+}
+
+(async () => {
+  await renderAdminShell('Configurações', 'Configurações');
+  await renderSettings();
+})();
+</script>
+</body>
+</html>

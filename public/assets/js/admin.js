@@ -27,7 +27,7 @@ async function renderAdminShell(pageTitle, activeNav) {
       <aside class="w-60 bg-navy text-white flex flex-col shrink-0">
         <div class="p-gutter border-b border-white/10">
           <div class="text-center">
-            <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Piranji</span>
+            <span class="font-script-name text-[2.4rem] text-gold leading-none">Alana Pirangi</span>
             <span class="block text-white/80 text-caption font-label-md" style="margin-top: 2px;">Psicanalista</span>
           </div>
         </div>

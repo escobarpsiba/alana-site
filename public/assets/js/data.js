@@ -122,7 +122,7 @@ const DB = {
 
   async getSettings() {
     const s = await _get(`${SUPABASE_URL}/rest/v1/settings?select=value&key=eq.site_config&limit=1`)
-    return s[0]?.value || { siteTitle: 'Alana Piranji | Psicanalista', siteDescription: '', keywords: '', email: '', city: '', socialLinks: [] }
+    return s[0]?.value || { siteTitle: 'Alana Pirangi | Psicanalista', siteDescription: '', keywords: '', email: '', city: '', socialLinks: [] }
   },
   async _saveSettings(val) {
     const existing = await _get(`${SUPABASE_URL}/rest/v1/settings?select=id&key=eq.site_config&limit=1`)
@@ -156,7 +156,7 @@ const DB = {
       if (s.length === 0) {
         await _post(`${SUPABASE_URL}/rest/v1/settings`, {
           key: 'site_config',
-          value: { siteTitle: 'Alana Piranji | Psicanalista', siteDescription: 'Psicanálise de orientação lacaniana — o inconsciente estruturado como linguagem, o desejo como ética.', keywords: 'psicanálise, lacan, freud, psicanalista, inconsciente', email: 'contato@alanapiranji.com.br', city: 'Taguatinga - Brasília - DF', socialLinks: [] }
+          value: { siteTitle: 'Alana Pirangi | Psicanalista', siteDescription: 'Psicanálise de orientação lacaniana — o inconsciente estruturado como linguagem, o desejo como ética.', keywords: 'psicanálise, lacan, freud, psicanalista, inconsciente', email: 'contato@alanapirangi.com.br', city: 'Taguatinga - Brasília - DF', socialLinks: [] }
         })
       }
       const p = await _get(`${SUPABASE_URL}/rest/v1/posts?select=id&limit=1`)

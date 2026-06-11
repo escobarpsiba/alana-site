@@ -138,6 +138,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+  @media (max-width: 767px) {
+    .py-xl { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .gap-xl { gap: 24px !important; }
+    .text-display-lg-mobile { font-size: 28px !important; }
+  }
 </style>
 </head>
 <body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
@@ -152,10 +157,21 @@
       <a class="text-secondary font-label-md hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#ajuda">Serviços</a>
       <a class="text-secondary font-label-md hover:text-primary transition-all duration-300 hover:scale-105" href="blog.html">Blog</a>
     </div>
-    <a href="contact.html" class="bg-primary text-on-primary px-gutter py-sm rounded-full font-label-md transition-all duration-300 hover:scale-105 shadow-sm">
+    <a href="contact.html" class="bg-primary text-on-primary px-sm md:px-gutter py-xs md:py-sm rounded-full font-label-md transition-all duration-300 hover:scale-105 shadow-sm text-sm md:text-base">
       Book a Session
     </a>
+    <button class="md:hidden text-primary" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
   </nav>
+  <div id="mobileMenu" class="hidden md:hidden bg-surface border-t border-surface-variant px-gutter py-md">
+    <div class="flex flex-col gap-sm">
+      <a href="index.html" class="text-primary font-label-md py-sm">Home</a>
+      <a href="about.html" class="text-secondary font-label-md py-sm">Sobre</a>
+      <a href="index.html#ajuda" class="text-secondary font-label-md py-sm">Serviços</a>
+      <a href="blog.html" class="text-secondary font-label-md py-sm">Blog</a>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -171,10 +187,10 @@
           Um ambiente seguro e acolhedor dedicado à exploração das profundezas da psique, onde o silêncio e a palavra encontram seu propósito na busca pelo autoconhecimento.
         </p>
         <div class="flex flex-col sm:flex-row gap-md">
-          <a href="contact.html" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md transition-transform hover:scale-105 text-center">
+          <a href="contact.html" class="bg-primary text-on-primary px-md py-xs md:px-lg md:py-sm rounded-full font-label-md transition-transform hover:scale-105 text-center">
             Iniciar Jornada
           </a>
-          <a href="about.html" class="border border-tertiary text-tertiary px-lg py-sm rounded-full font-label-md transition-transform hover:scale-105 bg-transparent text-center">
+          <a href="about.html" class="border border-tertiary text-tertiary px-md py-xs md:px-lg md:py-sm rounded-full font-label-md transition-transform hover:scale-105 bg-transparent text-center">
             Saiba Mais
           </a>
         </div>
@@ -234,7 +250,7 @@
   <section class="py-xl" id="ajuda">
     <div class="max-w-7xl mx-auto px-gutter">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-md md:grid-rows-2 h-auto md:h-[600px]">
-        <div class="md:col-span-2 md:row-span-2 bg-surface-container rounded-xl p-lg flex flex-col justify-end shadow-[0_20px_40px_rgba(78,98,95,0.03)] relative overflow-hidden group">
+        <div class="md:col-span-2 md:row-span-2 bg-surface-container rounded-xl p-md md:p-lg flex flex-col justify-end shadow-[0_20px_40px_rgba(78,98,95,0.03)] relative overflow-hidden group">
           <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
             <img class="w-full h-full object-cover" alt="Acolhimento terapêutico" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"/>
           </div>
@@ -248,16 +264,16 @@
             </ul>
           </div>
         </div>
-        <div class="md:col-span-2 bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-center shadow-md">
+        <div class="md:col-span-2 bg-primary text-on-primary rounded-xl p-md md:p-lg flex flex-col justify-center shadow-md">
           <h4 class="font-headline-sm mb-xs">Atendimento Adulto</h4>
           <p class="text-body-md opacity-90">Focado na compreensão dos sintomas contemporâneos e na busca por uma existência mais autêntica e criativa.</p>
         </div>
-        <div class="md:col-span-1 bg-tertiary-fixed rounded-xl p-lg flex flex-col justify-center">
+        <div class="md:col-span-1 bg-tertiary-fixed rounded-xl p-md md:p-lg flex flex-col justify-center">
           <span class="material-symbols-outlined text-primary mb-sm text-3xl">language</span>
           <h4 class="font-label-md text-on-tertiary-fixed">Global</h4>
           <p class="text-caption text-on-tertiary-fixed-variant">Sessões disponíveis em Português e Inglês para pacientes em todo o mundo.</p>
         </div>
-        <div class="md:col-span-1 bg-surface-container-high rounded-xl p-lg flex flex-col justify-center">
+        <div class="md:col-span-1 bg-surface-container-high rounded-xl p-md md:p-lg flex flex-col justify-center">
           <span class="material-symbols-outlined text-primary mb-sm text-3xl">event_available</span>
           <h4 class="font-label-md text-on-surface">Agendamento</h4>
           <p class="text-caption text-on-surface-variant">Horários flexíveis para acomodar sua rotina e necessidades específicas.</p>
@@ -289,7 +305,7 @@
       <p class="text-body-lg text-on-surface-variant mb-lg">
         A primeira sessão é um espaço para nos conhecermos e entendermos como posso caminhar ao seu lado nesta jornada.
       </p>
-      <a href="contact.html" class="bg-primary text-on-primary px-xl py-sm rounded-full font-label-md shadow-lg transition-transform hover:scale-105 inline-block">
+      <a href="contact.html" class="bg-primary text-on-primary px-lg py-xs md:px-xl md:py-sm rounded-full font-label-md shadow-lg transition-transform hover:scale-105 inline-block">
         Marcar Sessão Inicial
       </a>
     </div>

@@ -130,3 +130,16 @@
     width: 100%;
   }
 }
+
+@media (max-width: 767px) {
+  .py-xl {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .gap-xl {
+    gap: 24px !important;
+  }
+  .text-display-lg-mobile {
+    font-size: 28px !important;
+  }
+}

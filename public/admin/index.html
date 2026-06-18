@@ -36,7 +36,7 @@
     e.preventDefault();
     if (document.getElementById('password').value === 'alana2026') {
       sessionStorage.setItem('alana_admin', 'true');
-      window.location.href = 'dashboard.html';
+      window.location.href = '/admin/dashboard.html';
     } else {
       document.getElementById('loginError').classList.remove('hidden');
     }

@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/dashboard", "destination": "/admin/", "permanent": false },
+    { "source": "/dashboard.html", "destination": "/admin/", "permanent": false },
+    { "source": "/posts", "destination": "/admin/posts.html", "permanent": false },
+    { "source": "/posts.html", "destination": "/admin/posts.html", "permanent": false },
+    { "source": "/categories", "destination": "/admin/categories.html", "permanent": false },
+    { "source": "/categories.html", "destination": "/admin/categories.html", "permanent": false },
+    { "source": "/comentarios", "destination": "/admin/comentarios.html", "permanent": false },
+    { "source": "/comentarios.html", "destination": "/admin/comentarios.html", "permanent": false },
+    { "source": "/midias", "destination": "/admin/midias.html", "permanent": false },
+    { "source": "/midias.html", "destination": "/admin/midias.html", "permanent": false },
+    { "source": "/configuracoes", "destination": "/admin/configuracoes.html", "permanent": false },
+    { "source": "/configuracoes.html", "destination": "/admin/configuracoes.html", "permanent": false }
+  ]
+}

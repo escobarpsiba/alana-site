@@ -64,7 +64,7 @@ async function deleteMedia(id) {
 }
 
 (async () => {
-  await renderAdminShell('Mídias', 'Mídias');
+  if (!await renderAdminShell('Mídias', 'Mídias')) return;
   await renderMedia();
 
   document.getElementById('fileInput').onchange = async function(e) {

@@ -15,7 +15,7 @@
 <script src="../assets/js/admin.js"></script>
 <script>
 (async () => {
-await renderAdminShell('Dashboard', 'Dashboard');
+if (!await renderAdminShell('Dashboard', 'Dashboard')) return;
 const posts = await DB.getPosts();
 const s = await DB.getSettings();
 const lastPost = posts.length > 0 ? posts.reduce((a, b) => new Date(a.date) > new Date(b.date) ? a : b) : null;

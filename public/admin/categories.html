@@ -85,7 +85,7 @@ async function deleteCat(name) {
 }
 
 (async () => {
-  await renderAdminShell('Categorias', 'Categorias');
+  if (!await renderAdminShell('Categorias', 'Categorias')) return;
   await renderCategories();
 })();
 </script>

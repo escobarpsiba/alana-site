@@ -116,7 +116,7 @@ async function removeSocial(id) {
 }
 
 (async () => {
-  await renderAdminShell('Configurações', 'Configurações');
+  if (!await renderAdminShell('Configurações', 'Configurações')) return;
   await renderSettings();
 })();
 </script>

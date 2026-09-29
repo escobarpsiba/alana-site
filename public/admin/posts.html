@@ -185,7 +185,7 @@ async function deletePost(slug) {
 }
 
 (async () => {
-  await renderAdminShell('Posts', 'Posts');
+  if (!await renderAdminShell('Posts', 'Posts')) return;
   await renderPosts();
 
   document.getElementById('postTag').onchange = function() {

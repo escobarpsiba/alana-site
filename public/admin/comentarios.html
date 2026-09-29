@@ -72,7 +72,7 @@ async function deleteComment(id) {
 }
 
 (async () => {
-  await renderAdminShell('Comentários', 'Comentários');
+  if (!await renderAdminShell('Comentários', 'Comentários')) return;
   await renderComments();
 })();
 </script>

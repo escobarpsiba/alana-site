@@ -1,6 +1,6 @@
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80'
-const SUPABASE_URL = 'https://ktjbdpabrljpuhqxbgti.supabase.co'
-const SUPABASE_ANON_KEY = 'sb_publishable_mtp7X8D-YLJN7Zjen3umeA_PM-CcVLE'
+const SUPABASE_URL = 'https://jugcpmmvvqyfqovgxiui.supabase.co'
+const SUPABASE_ANON_KEY = 'sb_publishable_qps_BV-uZnUQOlgJ-yB-zw_1qfMo7ry'
 
 const _h = {
   'apikey': SUPABASE_ANON_KEY,
@@ -9,21 +9,33 @@ const _h = {
   'Prefer': 'return=representation'
 }
 
+async function _req(url, options = {}) {
+  let r
+  try {
+    r = await fetch(url, options)
+  } catch (err) {
+    throw new Error('Não foi possível conectar ao Supabase. Verifique sua internet e recarregue a página.')
+  }
+  const text = await r.text()
+  let body = null
+  try { body = text ? JSON.parse(text) : null } catch {}
+  if (!r.ok) {
+    const msg = body?.message || body?.error || body?.hint || text || r.statusText
+    throw new Error(`Supabase respondeu ${r.status}: ${String(msg).slice(0, 200)}`)
+  }
+  return body
+}
 async function _get(url) {
-  const r = await fetch(url, { headers: _h })
-  return r.json()
+  return _req(url, { headers: _h })
 }
 async function _post(url, body) {
-  const r = await fetch(url, { method: 'POST', headers: _h, body: JSON.stringify(body) })
-  return r.json()
+  return _req(url, { method: 'POST', headers: _h, body: JSON.stringify(body) })
 }
 async function _patch(url, body) {
-  const r = await fetch(url, { method: 'PATCH', headers: _h, body: JSON.stringify(body) })
-  return r.json()
+  return _req(url, { method: 'PATCH', headers: _h, body: JSON.stringify(body) })
 }
 async function _delete(url) {
-  const r = await fetch(url, { method: 'DELETE', headers: _h })
-  return r.json()
+  return _req(url, { method: 'DELETE', headers: _h })
 }
 
 const DB = {
@@ -173,4 +185,6 @@ const DB = {
   }
 }
 
-DB.init()
+DB.init().catch(err => {
+  console.warn('[DB] falha na inicialização:', err.message)
+})

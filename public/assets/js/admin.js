@@ -14,13 +14,41 @@ function checkAuth() {
   }
 }
 
+function renderFatalError(message) {
+  const shell = document.getElementById('admin-shell');
+  if (shell) {
+    shell.innerHTML = `
+      <div class="flex min-h-screen items-center justify-center bg-surface-container-low p-gutter">
+        <div class="bg-surface rounded-xl shadow-sm p-xl max-w-lg w-full text-center">
+          <span class="material-symbols-outlined text-error text-5xl">cloud_off</span>
+          <h1 class="font-headline-md text-headline-md text-on-surface mt-md">Não foi possível carregar o painel</h1>
+          <p class="font-body-md text-on-surface-variant mt-sm">${message}</p>
+          <div class="flex gap-sm justify-center mt-lg">
+            <button onclick="location.reload()"
+              class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:scale-[1.02] transition-transform">Tentar novamente</button>
+            <a href="index.html"
+              class="px-lg py-sm rounded-lg font-label-md border border-outline hover:bg-surface-container transition-colors">Voltar ao login</a>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
 async function renderAdminShell(pageTitle, activeNav) {
   checkAuth();
-  const s = await DB.getSettings();
-  document.title = pageTitle + ' | Admin | ' + s.siteTitle;
 
   const shell = document.getElementById('admin-shell');
   if (!shell) return;
+
+  let s;
+  try {
+    s = await DB.getSettings();
+  } catch (err) {
+    console.error('[Admin] falha ao carregar settings:', err);
+    renderFatalError(err.message);
+    return false;
+  }
+  document.title = pageTitle + ' | Admin | ' + s.siteTitle;
 
   shell.innerHTML = `
     <div class="flex min-h-screen">
@@ -63,6 +91,8 @@ async function renderAdminShell(pageTitle, activeNav) {
   toggle.innerHTML = '<span class="material-symbols-outlined">menu</span>';
   toggle.onclick = () => document.querySelector('aside').classList.toggle('hidden');
   document.body.appendChild(toggle);
+
+  return true;
 }
 
 function showNotification(msg, type) {
